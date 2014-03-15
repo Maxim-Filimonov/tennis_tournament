@@ -4,7 +4,7 @@ require 'tournament/rules/generic_rule'
 describe Tournament::Rules::GenericRule do
   it_behaves_like 'tournament rule'
 
-  it 'always applies' do
+  it 'is always applicable' do
     rule = described_class.new(instance_double('scoreboard'))
 
     rule.should be_applicable

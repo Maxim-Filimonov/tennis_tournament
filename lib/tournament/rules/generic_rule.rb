@@ -21,6 +21,7 @@ module Tournament
         end.join("-")
       end
 
+      private
       def score_map
         {0 => '0', 1 => '15', 2 => '30', 3 => '40'}
       end
