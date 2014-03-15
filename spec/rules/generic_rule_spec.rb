@@ -2,9 +2,7 @@ require 'spec_helper'
 require 'tournament/rules/generic_rule'
 
 describe Tournament::Rules::GenericRule do
-  it_behaves_like 'tournament rule' do
-    subject { described_class.new(instance_double(:scoreboard)) }
-  end
+  it_behaves_like 'tournament rule'
 
   it 'always applies' do
     rule = described_class.new(instance_double('scoreboard'))
