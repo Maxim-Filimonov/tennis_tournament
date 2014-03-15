@@ -1,25 +1,21 @@
+require 'tournament/scoreboard'
+require 'tournament/rules/generic_rule'
 module Tournament
   class Game
-    attr_reader :players
-    def initialize(players)
-      @players = players
-      @scores = {}
-      @players.each do |player|
-        @scores[player] = 0
-      end
-    end
-
-    def pointWonBy(player)
-      @scores[player] += 1
+    extend Forwardable
+    attr_reader :scoreboard
+    attr_reader :rules
+    delegate :pointWonBy => :scoreboard
+    def initialize(*players,
+      scoreboard: ->(){ Tournament::Scoreboard.new(players) },
+      rules: -> (scores) { [Tournament::Rules::GenericRule.new(scores)] })
+      @scoreboard = scoreboard.call
+      @rules = rules.call(@scoreboard)
     end
 
     def score
-      @scores.map do |score|
-        case score[1]
-        when 1 then "15"
-        when 2 then "30"
-        end
-      end.join("-")
+      rule = rules.find {|rule| rule.apply? }
+      rule.display
     end
   end
 end

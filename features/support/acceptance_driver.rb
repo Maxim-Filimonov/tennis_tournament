@@ -4,7 +4,7 @@ module AcceptanceDriver
     @players ||= []
   end
   def game
-    @game ||= Tournament::Game.new(@players)
+    @game ||= Tournament::Game.new(*@players)
   end
   def add_player(name)
     players << name
