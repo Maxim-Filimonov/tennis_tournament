@@ -7,22 +7,24 @@ module Tournament
   class Game
     extend Forwardable
     attr_reader :scoreboard
-    attr_reader :rules
+    attr_accessor :rules
     delegate :pointWonBy => :scoreboard
-    def initialize(*players,
-      scoreboard: ->(){ Tournament::Scoreboard.new(players) },
-      rules: -> (scores) { [
-                            Tournament::Rules::DeuceRule.new(scores),
-                            Tournament::Rules::WinnerRule.new(scores),
-                            Tournament::Rules::AdvantageRule.new(scores),
-                            Tournament::Rules::GenericRule.new(scores)] })
+    def initialize(*players, scoreboard: ->(){ Tournament::Scoreboard.new(players) })
       @scoreboard = scoreboard.call
-      @rules = rules.call(@scoreboard)
     end
 
     def score
       rule = rules.find {|rule| rule.applicable? }
       rule.display
+    end
+
+    def rules
+      @rules ||= [
+        Tournament::Rules::DeuceRule.new(scoreboard),
+        Tournament::Rules::WinnerRule.new(scoreboard),
+        Tournament::Rules::AdvantageRule.new(scoreboard),
+        Tournament::Rules::GenericRule.new(scoreboard)
+      ]
     end
   end
 end
