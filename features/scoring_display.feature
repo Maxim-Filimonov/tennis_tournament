@@ -5,14 +5,19 @@ Feature: Scoring display
 
 Background:
   Given there is a player with name "Jack"
-  And there is a player with name "Jim"
+  And there is a player with name "David"
 
 Scenario: One and two points scored
   When "Jack" scores 1 point
-  And "Jim" scores 2 points
+  And "David" scores 2 points
   Then score display should read "15-30"
 
 Scenario: Two and three points scored
   When "Jack" scores 2 point
-  And "Jim" scores 3 points
+  And "David" scores 3 points
   Then score display should read "30-40"
+
+Scenario: Deuce - equal scores after 3 point scored by each
+  When "Jack" scores 3 point
+  And "David" scores 3 points
+  Then score display should read "Deuce"
