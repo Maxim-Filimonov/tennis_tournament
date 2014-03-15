@@ -9,7 +9,7 @@ describe Tournament::Rules::GenericRule do
   it 'always applies' do
     rule = described_class.new(instance_double('scoreboard'))
 
-    rule.apply?.should eq(true)
+    rule.should be_applicable
   end
 
   context 'individual scores display' do

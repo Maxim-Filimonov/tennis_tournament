@@ -9,9 +9,9 @@ describe Tournament::Game do
 
   it 'finds the first rule which applies' do
     rules = [
-      instance_double('Tournament::Rules::GenericRule', apply?: false),
-      instance_double('Tournament::Rules::GenericRule', apply?: true, display: 'second rule'),
-      instance_double('Tournament::Rules::GenericRule', apply?: true)
+      instance_double('Tournament::Rules::GenericRule', applicable?: false),
+      instance_double('Tournament::Rules::GenericRule', applicable?: true, display: 'second rule'),
+      instance_double('Tournament::Rules::GenericRule', applicable?: true)
     ]
     game = described_class.new('p1', 'p2', rules: ->(_) { rules })
 

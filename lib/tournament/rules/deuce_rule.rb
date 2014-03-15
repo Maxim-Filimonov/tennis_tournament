@@ -7,7 +7,7 @@ module Tournament
         @scoreboard = scoreboard
       end
 
-      def apply?
+      def applicable?
         values = scoreboard.scores.map {|k,v| v}
         uniq_value = values.uniq
         scored_the_same = uniq_value.length == 1

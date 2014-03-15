@@ -7,7 +7,7 @@ module Tournament
         @scoreboard = scoreboard
       end
 
-      def apply?()
+      def applicable?()
         true
       end
 

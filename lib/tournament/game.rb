@@ -15,7 +15,7 @@ module Tournament
     end
 
     def score
-      rule = rules.find {|rule| rule.apply? }
+      rule = rules.find {|rule| rule.applicable? }
       rule.display
     end
   end
