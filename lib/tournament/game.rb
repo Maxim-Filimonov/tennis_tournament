@@ -1,8 +1,10 @@
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../../lib")
 require 'tournament/scoreboard'
 require 'tournament/rules/generic_rule'
 require 'tournament/rules/deuce_rule'
 require 'tournament/rules/advantage_rule'
 require 'tournament/rules/winner_rule'
+require 'forwardable'
 module Tournament
   class Game
     extend Forwardable

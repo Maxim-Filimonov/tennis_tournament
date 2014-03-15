@@ -16,5 +16,14 @@ describe Tournament::Scoreboard do
 
     scoreboard.scores['p1'].should eq(1)
   end
+
+  it 'raises error when trying to score as invalid player and suggets valid playes' do
+    scoreboard = described_class.new(['p1','p2'])
+
+    expect { scoreboard.pointWonBy('i dont exists') }.to raise_error {|error|
+      error.message.should include('p1')
+      error.message.should include('p2')
+    }
+  end
 end
 

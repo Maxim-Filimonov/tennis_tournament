@@ -10,6 +10,10 @@ module Tournament
     end
 
     def pointWonBy(player)
+      player_score = scores[player]
+      unless player_score
+        raise "#{player} is not found. Available players are #{scores.map {|k,_| k}.join(",")}"
+      end
       scores[player] += 1
     end
   end
