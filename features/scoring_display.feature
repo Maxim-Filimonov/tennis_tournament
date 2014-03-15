@@ -11,3 +11,8 @@ Scenario: One and two points scored
   When "Jack" scores 1 point
   And "Jim" scores 2 points
   Then score display should read "15-30"
+
+Scenario: Two and three points scored
+  When "Jack" scores 2 point
+  And "Jim" scores 3 points
+  Then score display should read "30-40"
