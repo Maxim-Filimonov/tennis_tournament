@@ -1,18 +1,16 @@
+require 'tournament/rules/difference_rule_applicability'
 module Tournament
   module Rules
     class AdvantageRule
       attr_reader :scoreboard
+      include DifferenceRuleApplicability
 
       def initialize(scoreboard)
         @scoreboard = scoreboard
       end
-      def applicable?
-        values = scoreboard.scores.map {|k,v| v}
-        return false if values.inject(:+) < 6
-        highest_score = values.max
-        next_highest_score = values.reject{|v| v == highest_score}.max
-        score_difference = highest_score - next_highest_score
-        score_difference == 1
+
+      def required_difference
+        1
       end
 
       def display

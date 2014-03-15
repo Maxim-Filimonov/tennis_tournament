@@ -1,19 +1,17 @@
+require 'tournament/rules/difference_rule_applicability'
 module Tournament
   module Rules
     class DeuceRule
       attr_reader :scoreboard
+      include DifferenceRuleApplicability
 
       def initialize(scoreboard)
         @scoreboard = scoreboard
       end
 
-      def applicable?
-        values = scoreboard.scores.map {|k,v| v}
-        uniq_value = values.uniq
-        scored_the_same = uniq_value.length == 1
-        result = false
-        result = uniq_value.first >= 3 if scored_the_same
-        result
+
+      def required_difference
+        0
       end
 
       def display
