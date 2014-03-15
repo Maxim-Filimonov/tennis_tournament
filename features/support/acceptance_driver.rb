@@ -1,9 +1,10 @@
+require 'tournament/game'
 module AcceptanceDriver
   def players
     @players ||= []
   end
   def game
-    @game ||= Game.new(@players)
+    @game ||= Tournament::Game.new(@players)
   end
   def add_player(name)
     players << name
@@ -16,17 +17,3 @@ module AcceptanceDriver
   end
 end
 World(AcceptanceDriver)
-
-class Game
-  def initialize(players)
-
-  end
-
-  def pointWonBy(player)
-
-  end
-
-  def score
-
-  end
-end

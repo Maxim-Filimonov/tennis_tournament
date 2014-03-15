@@ -4,7 +4,7 @@ end
 
 
 When(/^"([^"]*)" scores (\d+) points?$/) do |player, score|
-  (0..score.to_i).each do |point|
+  (1..score.to_i).each do |point|
     add_point_for(player)
   end
 end
