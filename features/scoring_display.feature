@@ -21,3 +21,8 @@ Scenario: Deuce - equal scores after 3 point scored by each
   When "Jack" scores 3 point
   And "David" scores 3 points
   Then score display should read "Deuce"
+
+Scenario: Advantage - one point advantage after 3 point scored by each
+    When "Jack" scores 4 point
+    And "David" scores 3 points
+    Then score display should read "Advantage Jack"
