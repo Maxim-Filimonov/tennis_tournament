@@ -26,3 +26,8 @@ Feature: Scoring display
     When "Jack" scores 4 point
     And "David" scores 3 points
     Then score display should read "Advantage Jack"
+
+  Scenario: Winning - two point difference after 3 point scored by each
+    When "Jack" scores 3 point
+    And "David" scores 5 points
+    Then score display should read "David wins"

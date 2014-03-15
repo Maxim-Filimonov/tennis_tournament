@@ -2,6 +2,7 @@ require 'tournament/scoreboard'
 require 'tournament/rules/generic_rule'
 require 'tournament/rules/deuce_rule'
 require 'tournament/rules/advantage_rule'
+require 'tournament/rules/winner_rule'
 module Tournament
   class Game
     extend Forwardable
@@ -12,6 +13,7 @@ module Tournament
       scoreboard: ->(){ Tournament::Scoreboard.new(players) },
       rules: -> (scores) { [
                             Tournament::Rules::DeuceRule.new(scores),
+                            Tournament::Rules::WinnerRule.new(scores),
                             Tournament::Rules::AdvantageRule.new(scores),
                             Tournament::Rules::GenericRule.new(scores)] })
       @scoreboard = scoreboard.call
